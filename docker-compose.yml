@@ -17,6 +17,8 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: user
       MYSQL_DATABASE: reference
+    volumes:
+      - ./mysql-dump:/docker-entrypoint-initdb.d
     networks:
       backend:
     ports:
