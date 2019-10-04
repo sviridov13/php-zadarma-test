@@ -1,0 +1,26 @@
+version: "3.3"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: apache/Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - . :/var/www/html
+    networks:
+      backend:
+  reference-mysql:
+    image: mysql:5.6
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+      MYSQL_DATABASE: reference
+    networks:
+      backend:
+    ports:
+      - 3306:3306
+networks:
+  backend:
+    driver: bridge
